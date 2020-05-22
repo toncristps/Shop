@@ -26,6 +26,7 @@
                 cfg.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
 
+            services.AddTransient<SeedDb>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
