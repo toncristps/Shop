@@ -8,14 +8,22 @@ namespace Shop.UIForms.ViewModels
 {
     public class ProductsViewModel : BaseViewModel
     {
-        private  readonly ApiService apiService;
+        private readonly ApiService apiService;
 
         private ObservableCollection<Product> products;
+
+        private bool isRefreshing;
 
         public ObservableCollection<Product> Products
         {
             get { return this.products; }
             set { this.SetValue(ref this.products, value); }
+        }
+
+        public bool IsRefreshing
+        {
+            get { return this.isRefreshing; }
+            set { this.SetValue(ref this.isRefreshing, value); }
         }
 
         public ProductsViewModel()
@@ -26,10 +34,13 @@ namespace Shop.UIForms.ViewModels
 
         private async void LoadProducts()
         {
+            this.IsRefreshing = true;
             var response = await this.apiService.GetListAsync<Product>(
                 "https://shopwebton.azurewebsites.net",
                 "/api",
                 "/Products");
+
+            this.IsRefreshing = false;
 
             if (!response.IsSuccess)
             {
