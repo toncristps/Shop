@@ -13,6 +13,7 @@
     using Helpers;
     using Microsoft.IdentityModel.Tokens;
     using System.Text;
+    using Shop.Web.Data.Repositories;
 
     public class Startup
     {
@@ -65,6 +66,8 @@
 
             services.AddScoped<ICountryRepository, CountryRepository>();
 
+            services.AddScoped<IOrderRepository, OrderRepository>();
+
             services.AddScoped<IUserHelper, UserHelper>();
 
             services.Configure<CookiePolicyOptions>(options =>
@@ -73,6 +76,13 @@
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Account/NotAuthorized";
+                options.AccessDeniedPath = "/Account/NotAuthorized";
+            });
+
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -91,6 +101,7 @@
                 app.UseHsts();
             }
 
+            app.UseStatusCodePagesWithReExecute("/error/{0}");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseAuthentication();
