@@ -38,7 +38,7 @@
         {
             if (this.User.Identity.IsAuthenticated)
             {
-                return this.RedirectToAction("Index", "Home");
+                return this.RedirectToAction("Index", "Products");
             }
             return this.View();
         }
@@ -56,10 +56,11 @@
                         return this.Redirect(this.Request.Query["ReturnUrl"].First());
                     }
 
-                    return this.RedirectToAction("Index", "Home");
+                    return this.RedirectToAction("Index", "Products");
                 }
             }
-            this.ModelState.AddModelError(string.Empty, "Failed to login.");
+            this.ModelState.AddModelError(string.Empty, "Error al iniciar sesión.");
+            this.ViewBag.Message = "Error al iniciar sesi&#xf3;n.";
             return this.View(model);
         }
 
@@ -107,7 +108,8 @@
                     var result = await this.userHelper.AddUserAsync(user, model.Password);
                     if (result != IdentityResult.Success)
                     {
-                        this.ModelState.AddModelError(string.Empty, "The user couldn't be created.");
+                        this.ModelState.AddModelError(string.Empty, "El usuario no pudo ser creado.");
+                        this.ViewBag.Message = "El usuario no pudo ser creado.";
                         return this.View(model);
                     }
 
@@ -118,14 +120,15 @@
                         token = myToken
                     }, protocol: HttpContext.Request.Scheme);
 
-                    this.mailHelper.SendMail(model.Username, "Email confirmation", $"<h1>Email Confirmation</h1>" +
-                        $"To allow the user, " +
-                        $"plase click in this link:</br></br><a href = \"{tokenLink}\">Confirm Email</a>");
-                    this.ViewBag.Message = "The instructions to allow your user has been sent to email.";
+                    this.mailHelper.SendMail(model.Username, "Confirmación de correo electrónico", $"<h1>Confirmación de correo electrónico</h1>" +
+                        $"Permitir usuario, " +
+                        $"haga clic en este enlace:</br></br><a href = \"{tokenLink}\">Confirmación de correo electrónico</a>");
+                    this.ViewBag.Message = "Las instrucciones para permitir su registro, fue enviado por correo electr&oacute;nico.";
                     return this.View(model);
                 }
 
-                this.ModelState.AddModelError(string.Empty, "The username is already registered.");
+                   this.ModelState.AddModelError(string.Empty, "Usuario ya registrado.");
+                this.ViewBag.Message = "Usuario ya registrado.";
             }
 
             return this.View(model);
@@ -183,7 +186,7 @@
                     var respose = await this.userHelper.UpdateUserAsync(user);
                     if (respose.Succeeded)
                     {
-                        this.ViewBag.UserMessage = "User updated!";
+                        this.ViewBag.UserMessage = "Usuario actualizado!";
                     }
                     else
                     {
@@ -192,7 +195,8 @@
                 }
                 else
                 {
-                    this.ModelState.AddModelError(string.Empty, "User no found.");
+                    this.ModelState.AddModelError(string.Empty, "Usuario no encontrado.");
+                    this.ViewBag.UserMessage = "Usuario no encontrado.";
                 }
             }
 
@@ -216,6 +220,7 @@
                     var result = await this.userHelper.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
                     if (result.Succeeded)
                     {
+                        this.ViewBag.Message = "Restablecimiento de contraseña exitosa.";
                         return this.RedirectToAction("ChangeUser");
                     }
                     else
@@ -225,7 +230,8 @@
                 }
                 else
                 {
-                    this.ModelState.AddModelError(string.Empty, "User no found.");
+                    this.ModelState.AddModelError(string.Empty, "Usuario no encontrado.");
+                    this.ViewBag.Message = "Usuario no encontrado.";
                 }
             }
 
@@ -320,7 +326,8 @@
                 var user = await this.userHelper.GetUserByEmailAsync(model.Email);
                 if (user == null)
                 {
-                    ModelState.AddModelError(string.Empty, "The email doesn't correspont to a registered user.");
+                    ModelState.AddModelError(string.Empty, "El correo electrónico no corresponde a un usuario registrado.");
+                    this.ViewBag.Message = "El correo electrónico no corresponde a un usuario registrado.";
                     return this.View(model);
                 }
 
@@ -329,10 +336,10 @@
                     "ResetPassword",
                     "Account",
                     new { token = myToken }, protocol: HttpContext.Request.Scheme);
-                this.mailHelper.SendMail(model.Email, "Shop Password Reset", $"<h1>Shop Password Reset</h1>" +
-                    $"To reset the password click in this link:</br></br>" +
-                    $"<a href = \"{link}\">Reset Password</a>");
-                this.ViewBag.Message = "The instructions to recover your password has been sent to email.";
+                this.mailHelper.SendMail(model.Email, "Pirwa restablecimiento de contraseña", $"<h1>Pirwa restablecimiento de contraseña</h1>" +
+                    $"Para restablecer la contraseña, haga clic en este enlace:</br></br>" +
+                    $"<a href = \"{link}\">Restablecer la contraseña </a>");
+                this.ViewBag.Message = "Las instrucciones para recuperar su contraseña han sido enviadas por correo electrónico";
                 return this.View();
 
             }
@@ -354,15 +361,15 @@
                 var result = await this.userHelper.ResetPasswordAsync(user, model.Token, model.Password);
                 if (result.Succeeded)
                 {
-                    this.ViewBag.Message = "Password reset successful.";
+                    this.ViewBag.Message = "Restablecimiento de contraseña exitosa.";
                     return this.View();
                 }
 
-                this.ViewBag.Message = "Error while resetting the password.";
+                this.ViewBag.Message = "Error al restablecer la contraseña.";
                 return View(model);
             }
 
-            this.ViewBag.Message = "User not found.";
+            this.ViewBag.Message = "Usuario no encontrado.";
             return View(model);
         }
 
