@@ -38,7 +38,7 @@
 		{
 			var model = new AddItemViewModel
 			{
-				Quantity = 1,
+				Quantity = 5,
 				Products = this.productRepository.GetComboProducts()
 			};
 

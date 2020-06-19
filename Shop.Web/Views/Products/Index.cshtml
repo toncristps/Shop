@@ -1,14 +1,38 @@
 ﻿@model IEnumerable<Shop.Web.Data.Entities.Product>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Productos";
 }
 
-<h2>Products</h2>
+<h2>Productos</h2>
 
+<div id="whatsapp-icon" style="position:fixed; left:10px; bottom:10px; text-align:center; padding:3px">
+    <a href="https://api.whatsapp.com/send?phone=+51921851879">
+        <img src="https://image.flaticon.com/icons/svg/1051/1051272.svg" width="40" height="40">
+    </a>
+</div>
+
+<div id="whatsapp-icon" style="position:fixed; left:60px; bottom:10px; text-align:center; padding:3px">
+    <a href="https://www.facebook.com/ParisGranosSelectos">
+        <img src="https://image.flaticon.com/icons/svg/1312/1312139.svg" width="40" height="40">
+    </a>
+</div>
+
+<div id="whatsapp-icon" style="position:fixed; left:110px; bottom:10px; text-align:center; padding:3px">
+    <a href="https://www.instagram.com/pirway/">
+        <img src="https://www.flaticon.es/premium-icon/icons/svg/1377/1377231.svg" width="40" height="40">
+    </a>
+</div>
+
+@if (this.User.IsInRole("Admin"))
+{
 <p>
-    <a asp-action="Create" class="btn btn-primary">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">Crear</a>
 </p>
+}
+
+
+
 <table class="table">
     <thead>
         <tr>
@@ -21,55 +45,65 @@
             <th>
                 @Html.DisplayNameFor(model => model.ImageUrl)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastPurchase)
+            <!--<th>
+                 @Html.DisplayNameFor(model => model.LastPurchase)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.LastSale)
-            </th>
+            </th>-->
             <th>
                 @Html.DisplayNameFor(model => model.IsAvailabe)
             </th>
-            <th>
+            <!--<th>
                 @Html.DisplayNameFor(model => model.Stock)
-            </th>
+            </th>-->
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @if (!string.IsNullOrEmpty(item.ImageUrl))
-                {
-                    <img src="@Url.Content(item.ImageUrl)" alt="Image" style="width:100px;height:150px;max-width: 100%; height: auto;" />
-                }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.ImageUrl))
+                    {
+                        <img src="@Url.Content(item.ImageUrl)" alt="Image" style="width:100px;height:150px;max-width: 100%; height: auto;" />
+                    }
 
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastPurchase)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastSale)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsAvailabe)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Stock)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Detalles</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Eliminar</a>
-            </td>
-        </tr>
-}
+                </td>
+                <!--<td>
+                    @Html.DisplayFor(modelItem => item.LastPurchase)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastSale)
+                </td>-->
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsAvailabe)
+                </td>
+                <!--<td>
+                    @Html.DisplayFor(modelItem => item.Stock)
+                </td>-->
+                <td>
+                    @if (this.User.IsInRole("Admin"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Editar</a>
+                    }
+
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Ver</a>
+
+                    @if (this.User.IsInRole("Admin"))
+                    {
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Eliminar</a>
+                    }
+
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

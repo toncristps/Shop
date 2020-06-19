@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<Shop.Web.Data.Entities.OrderDetailTemp>
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Hacer Pedido";
 }
 
-<h2>Create</h2>
+<h2>Hacer Pedido</h2>
 
 <p>
-    <a asp-action="AddProduct" class="btn btn-success">Add Product</a>
-    <a asp-action="ConfirmOrder" class="btn btn-primary" id="btnConfirm">Confirm Order</a>
+    <a asp-action="AddProduct" class="btn btn-success">Agregar producto</a>
+    <a asp-action="ConfirmOrder" class="btn btn-primary" id="btnConfirm">Confirmar Pedido</a>
 </p>
 <table class="table">
     <thead>
@@ -45,10 +45,9 @@
                     @Html.DisplayFor(modelItem => item.Value)
                 </td>
                 <td id="@item.Id">
-                    >
                     <a asp-action="Increase" asp-route-id="@item.Id" class="btn btn-warning"><i class="fa fa-plus"></i></a>
                     <a asp-action="Decrease" asp-route-id="@item.Id" class="btn btn-info"><i class="fa fa-minus"></i></a>
-                    <a asp-action="DeleteItem" asp-route-id="@item.Id" class="btn btn-danger" id="btnDeleteItem">Delete</a>
+                    <a asp-action="DeleteItem" asp-route-id="@item.Id" class="btn btn-danger" id="btnDeleteItem">Eliminar</a>
                 </td>
             </tr>
         }
@@ -60,13 +59,14 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-window-close"></i></button>
-                <h4 class="modal-title">Confirm</h4>
+                <h4 class="modal-title">Confirmar</h4>
             </div>
             <div class="modal-body">
-                <p>Do you want to confirm the order?</p>
+                <p>¿Desea confirmar el pedido?
+                </p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="btnYesConfirm">Yes</button>
+                <button type="button" class="btn btn-primary" id="btnYesConfirm">Sí</button>
                 <button type="button" class="btn btn-success" id="btnNoConfirm">No</button>
             </div>
         </div>
@@ -78,13 +78,14 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-window-close"></i></button>
-                <h4 class="modal-title">Delete</h4>
+                <h4 class="modal-title">Eliminar</h4>
             </div>
             <div class="modal-body">
-                <p>Do you want to delete the product from order?</p>
+                <p>¿Desea eliminar el producto del pedido?
+                </p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" id="btnYesDelete">Delete</button>
+                <button type="button" class="btn btn-danger" id="btnYesDelete">Eliminar</button>
                 <button type="button" class="btn btn-success" id="btnNoDelete">No</button>
             </div>
         </div>

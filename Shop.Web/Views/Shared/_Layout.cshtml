@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Shop.Web</title>
+    <title>@ViewData["Title"] - Pirway</title>
     <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
 
     <environment include="Development">
@@ -29,21 +29,21 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Shop.Web</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Pirway</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                    <li><a asp-area="" asp-controller="Products" asp-action="Index">Products</a></li>
+                    <!--<li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>-->
+                    <li><a asp-area="" asp-controller="Home" asp-action="About">Nosotros</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contáctanos</a></li>
+                    <li><a asp-area="" asp-controller="Products" asp-action="Index">Productos</a></li>
                     @if (this.User.Identity.IsAuthenticated)
                     {
-                        <li><a asp-area="" asp-controller="Orders" asp-action="Index">Orders</a></li>
+                        <li><a asp-area="" asp-controller="Orders" asp-action="Index">Pedidos</a></li>
 
                         @if (this.User.IsInRole("Admin"))
                         {
-                            <li><a asp-area="" asp-controller="Countries" asp-action="Index">Countries</a></li>
+                            <li><a asp-area="" asp-controller="Countries" asp-action="Index">Paises</a></li>
                         }
                     }
 
@@ -52,11 +52,11 @@
                     @if (this.User.Identity.IsAuthenticated)
                     {
                         <li><a asp-area="" asp-controller="Account" asp-action="ChangeUser">@this.User.Identity.Name</a></li>
-                        <li><a asp-area="" asp-controller="Account" asp-action="Logout">Logout</a></li>
+                        <li><a asp-area="" asp-controller="Account" asp-action="Logout">Cerrar sesión</a></li>
                     }
                     else
                     {
-                        <li><a asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
+                        <li><a asp-area="" asp-controller="Account" asp-action="Login">Iniciar sesión</a></li>
                     }
                 </ul>
 
@@ -72,7 +72,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2020 - Shop.Web</p>
+            <p>&#169; 2020 - &#64;toncrist</p>
         </footer>
     </div>
 

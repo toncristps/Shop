@@ -86,7 +86,7 @@
 
             list.Insert(0, new SelectListItem
             {
-                Text = "(Select a country...)",
+                Text = "(Seleccione su País...)",
                 Value = "0"
             });
 
@@ -108,7 +108,7 @@
 
             list.Insert(0, new SelectListItem
             {
-                Text = "(Select a city...)",
+                Text = "(Selecione su Ciudad...)",
                 Value = "0"
             });
 

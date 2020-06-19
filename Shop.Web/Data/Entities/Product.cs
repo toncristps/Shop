@@ -7,14 +7,16 @@
 	{
 		public int Id { get; set; }
 
+		[Display(Name = "Producto")]
 		[MaxLength(50, ErrorMessage = "The field {0} only can contain a maximum {1} characters")]
 		[Required]
 		public string Name { get; set; }
 
-		[DisplayFormat(DataFormatString = "{0:C2}", ApplyFormatInEditMode = false)]
+		[Display(Name = "Precio (S/.)")]
+		//[DisplayFormat(DataFormatString = "{0:C2}", ApplyFormatInEditMode = false)]
 		public decimal Price { get; set; }
 
-		[Display(Name = "Image")]
+		[Display(Name = "Imagen")]
 		public string ImageUrl { get; set; }
 
 		[Display(Name = "Last Purchase")]
@@ -25,9 +27,10 @@
 		[DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
 		public DateTime? LastSale { get; set; }
 
-		[Display(Name = "Is Availabe?")]
+		[Display(Name = "Stock")]
 		public bool IsAvailabe { get; set; }
 
+		[Display(Name = "Stock (Kg.)")]
 		[DisplayFormat(DataFormatString = "{0:N2}", ApplyFormatInEditMode = false)]
 		public double Stock { get; set; }
 

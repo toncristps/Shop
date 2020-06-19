@@ -9,12 +9,12 @@ namespace Shop.Web.Models
 
     public class LoginViewModel
     {
-        [Required]
-        [EmailAddress]
+        [Required(ErrorMessage = "el campo Usuario es requerio")]
+        [EmailAddress(ErrorMessage = "ingrese email valido")]
         public string Username { get; set; }
 
-        [Required]
-        [MinLength(6)]
+        [Required(ErrorMessage = "el campo Contraseña es requerio")]
+        [MinLength(6, ErrorMessage = "El campo Contraseña debe tener como minimo '6' caracteres.")]
         public string Password { get; set; }
 
         public bool RememberMe { get; set; }

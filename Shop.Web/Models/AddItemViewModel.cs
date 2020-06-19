@@ -6,11 +6,12 @@
 
     public class AddItemViewModel
     {
-        [Display(Name = "Product")]
-        [Range(1, int.MaxValue, ErrorMessage = "You must select a product.")]
+        [Display(Name = "Producto")]
+        [Range(1, int.MaxValue, ErrorMessage = "Debe seleccionar un producto.")]
         public int ProductId { get; set; }
 
-        [Range(0.0001, double.MaxValue, ErrorMessage = "The quantiy must be a positive number")]
+        [Display(Name = "Cantidad")]
+        [Range(5.0000, double.MaxValue, ErrorMessage = "La cantidad debe ser mayor igual a 5 kg.")]
         public double Quantity { get; set; }
 
         public IEnumerable<SelectListItem> Products { get; set; }

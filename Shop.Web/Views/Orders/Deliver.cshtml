@@ -1,12 +1,12 @@
 ﻿@model Shop.Web.Models.DeliverViewModel
 
 @{
-    ViewData["Title"] = "Deliver";
+    ViewData["Title"] = "Entrega";
 }
 
-<h2>Deliver</h2>
+<h2>Entrega</h2>
 
-<h4>Order</h4>
+<h4>Pedido</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -15,7 +15,7 @@
             <input type="hidden" asp-for="Id" />
 
             <div class="form-group">
-                <label asp-for="DeliveryDate" class="control-label"></label>
+                <label asp-for="DeliveryDate" class="control-label">Fecha de Entrega</label>
                 <div class="input-group date" data-provide="datepicker">
                     <input asp-for="DeliveryDate" class="form-control" />
                     <span class="input-group-addon">
@@ -26,8 +26,8 @@
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-                <a asp-action="Index" class="btn btn-success">Back to List</a>
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-success">Regresar a Lista</a>
             </div>
         </form>
     </div>

@@ -14,7 +14,7 @@
 		[DisplayFormat(DataFormatString = "{0:yyyy/MM/dd hh:mm tt}", ApplyFormatInEditMode = false)]
 		public DateTime OrderDate { get; set; }
 
-		[Display(Name = "Delivery date")]
+		[Display(Name = "Fecha de Entrega")]
 		[DisplayFormat(DataFormatString = "{0:yyyy/MM/dd hh:mm tt}", ApplyFormatInEditMode = false)]
 		public DateTime? DeliveryDate { get; set; }
 
@@ -23,16 +23,19 @@
 
 		public IEnumerable<OrderDetail> Items { get; set; }
 
+		[Display(Name = "Lineas")]
 		[DisplayFormat(DataFormatString = "{0:N0}")]
 		public int Lines { get { return this.Items == null ? 0 : this.Items.Count(); } }
 
+		[Display(Name = "Cantidad")]
 		[DisplayFormat(DataFormatString = "{0:N2}")]
 		public double Quantity { get { return this.Items == null ? 0 : this.Items.Sum(i => i.Quantity); } }
 
+		[Display(Name = "Valor")]
 		[DisplayFormat(DataFormatString = "{0:C2}")]
 		public decimal Value { get { return this.Items == null ? 0 : this.Items.Sum(i => i.Value); } }
 
-		[Display(Name = "Order date")]
+		[Display(Name = "Fecha de Pedido")]
 		[DisplayFormat(DataFormatString = "{0:yyyy/MM/dd hh:mm tt}", ApplyFormatInEditMode = false)]
 		public DateTime? OrderDateLocal 
 		{

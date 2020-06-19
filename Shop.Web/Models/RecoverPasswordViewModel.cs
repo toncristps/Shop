@@ -4,8 +4,8 @@
 
     public class RecoverPasswordViewModel
     {
-        [Required]
-        [EmailAddress]
+        [Required(ErrorMessage = "el campo email es requerido")]
+        [EmailAddress(ErrorMessage = "ingrese email valido")]
         public string Email { get; set; }
     }
 

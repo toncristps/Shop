@@ -59,8 +59,8 @@
                     return this.RedirectToAction("Index", "Products");
                 }
             }
-            this.ModelState.AddModelError(string.Empty, "Error al iniciar sesión.");
-            this.ViewBag.Message = "Error al iniciar sesi&#xf3;n.";
+            this.ModelState.AddModelError(string.Empty, "Error al iniciar sesion.");
+            this.ViewBag.Message = "Error al iniciar sesion.";
             return this.View(model);
         }
 
@@ -123,7 +123,7 @@
                     this.mailHelper.SendMail(model.Username, "Confirmación de correo electrónico", $"<h1>Confirmación de correo electrónico</h1>" +
                         $"Permitir usuario, " +
                         $"haga clic en este enlace:</br></br><a href = \"{tokenLink}\">Confirmación de correo electrónico</a>");
-                    this.ViewBag.Message = "Las instrucciones para permitir su registro, fue enviado por correo electr&oacute;nico.";
+                    this.ViewBag.Message = "Las instrucciones para permitir su registro, fue enviado a su email.";
                     return this.View(model);
                 }
 
@@ -220,7 +220,7 @@
                     var result = await this.userHelper.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
                     if (result.Succeeded)
                     {
-                        this.ViewBag.Message = "Restablecimiento de contraseña exitosa.";
+                        this.ViewBag.Message = "Restablecimiento de password exitoso.";
                         return this.RedirectToAction("ChangeUser");
                     }
                     else
@@ -326,8 +326,8 @@
                 var user = await this.userHelper.GetUserByEmailAsync(model.Email);
                 if (user == null)
                 {
-                    ModelState.AddModelError(string.Empty, "El correo electrónico no corresponde a un usuario registrado.");
-                    this.ViewBag.Message = "El correo electrónico no corresponde a un usuario registrado.";
+                    ModelState.AddModelError(string.Empty, "El email no corresponde a un usuario registrado.");
+                    this.ViewBag.Message = "El email no corresponde a un usuario registrado.";
                     return this.View(model);
                 }
 
@@ -339,7 +339,7 @@
                 this.mailHelper.SendMail(model.Email, "Pirwa restablecimiento de contraseña", $"<h1>Pirwa restablecimiento de contraseña</h1>" +
                     $"Para restablecer la contraseña, haga clic en este enlace:</br></br>" +
                     $"<a href = \"{link}\">Restablecer la contraseña </a>");
-                this.ViewBag.Message = "Las instrucciones para recuperar su contraseña han sido enviadas por correo electrónico";
+                this.ViewBag.Message = "Las instrucciones para recuperar su password han sido enviadas a su email";
                 return this.View();
 
             }
@@ -361,11 +361,11 @@
                 var result = await this.userHelper.ResetPasswordAsync(user, model.Token, model.Password);
                 if (result.Succeeded)
                 {
-                    this.ViewBag.Message = "Restablecimiento de contraseña exitosa.";
+                    this.ViewBag.Message = "Restablecimiento de password exitoso.";
                     return this.View();
                 }
 
-                this.ViewBag.Message = "Error al restablecer la contraseña.";
+                this.ViewBag.Message = "Error al restablecer el password.";
                 return View(model);
             }
 

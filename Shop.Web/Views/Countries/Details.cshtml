@@ -1,13 +1,13 @@
 ﻿@model Shop.Web.Data.Entities.Country
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalles País";
 }
 
-<h2>Details</h2>
+<h2>Detalles</h2>
 
 <div>
-    <h4>Country</h4>
+    <h4>País</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -19,15 +19,15 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
-    <a asp-action="AddCity" asp-route-id="@Model.Id" class="btn btn-info">Add City</a>
-    <a asp-action="Index" class="btn btn-success">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Editar</a>
+    <a asp-action="AddCity" asp-route-id="@Model.Id" class="btn btn-info">Agregar Ciudad</a>
+    <a asp-action="Index" class="btn btn-success">Regresar a Lista</a>
 </div>
 
-<h4>Cities</h4>
+<h4>Ciudades</h4>
 @if (Model.Cities == null || Model.Cities.Count == 0)
 {
-    <h5>No cities added yet</h5>
+<h5>No hay ciudades agregadas todavía.</h5>
 }
 else
 {
@@ -48,8 +48,8 @@ else
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
                     <td id="@item.Id">
-                        <a asp-action="EditCity" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
-                        <a asp-action="DeleteCity" asp-route-id="@item.Id" class="btn btn-danger" id="btnDelete">Delete</a>
+                        <a asp-action="EditCity" asp-route-id="@item.Id" class="btn btn-warning">Editar</a>
+                        <a asp-action="DeleteCity" asp-route-id="@item.Id" class="btn btn-danger" id="btnDelete">Eliminar</a>
                     </td>
                 </tr>
             }
@@ -62,13 +62,13 @@ else
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-window-close"></i></button>
-                <h4 class="modal-title">Delete</h4>
+                <h4 class="modal-title">Eliminar</h4>
             </div>
             <div class="modal-body">
-                <p>Do you want to delete the city?</p>
+                <p>¿Quieres borrar la ciudad?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" id="btnYesDelete">Delete</button>
+                <button type="button" class="btn btn-danger" id="btnYesDelete">Eliminar</button>
                 <button type="button" class="btn btn-success" id="btnNoDelete">No</button>
             </div>
         </div>

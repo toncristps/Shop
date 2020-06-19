@@ -19,8 +19,8 @@
 		public City City { get; set; }
 
 
-		[Display(Name = "Full Name")]
-        public string FullName { get { return $"{this.FirstName} {this.LastName}"; } }
+		[Display(Name = "Nombre Completo")]
+        public string FullName { get { return $"{this.FirstName} {this.LastName} {this.PhoneNumber}"; } }
     }
 
 }

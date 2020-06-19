@@ -31,14 +31,13 @@
             if (!this.context.Countries.Any())
             {
                 var cities = new List<City>();
-                cities.Add(new City { Name = "Medellín" });
-                cities.Add(new City { Name = "Bogotá" });
-                cities.Add(new City { Name = "Calí" });
+                cities.Add(new City { Name = "Cusco" });
+                //cities.Add(new City { Name = "Bogotá" });
 
                 this.context.Countries.Add(new Country
                 {
                     Cities = cities,
-                    Name = "Colombia"
+                    Name = "Perú"
                 });
 
                 await this.context.SaveChangesAsync();
@@ -84,9 +83,9 @@
 
             if (!this.context.Products.Any())
             {
-                this.AddProduct("iPhone x", user);
-                this.AddProduct("Magic Mouse", user);
-                this.AddProduct("IWachy Series 4", user);
+                this.AddProduct("Lenteja Grande", user);
+                this.AddProduct("Lenteja Bebe", user);
+                this.AddProduct("Pallar Grande", user);
                 await this.context.SaveChangesAsync();
             }
         }
